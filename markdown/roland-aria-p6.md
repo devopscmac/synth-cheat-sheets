@@ -170,5 +170,98 @@ Dedicated one-touch effect buttons: **LOOPER, PITCH, DELAY, FILTER, SCATTER**; *
 - **Automate grain position** with motion recording: hold a step + turn START knob to sweep through the sample over time.
 - SYNC IN/OUT lets you clock-sync multiple AIRA Compact units without MIDI cables.
 
+## MIDI Implementation
+
+### Channel Map
+
+| Device | Default MIDI Ch | Notes |
+|---|---|---|
+| **Sample pads** | Ch 11 | Triggers pads Bank A1–H6 via notes 48–95 |
+| **Granular sampler** | Ch 4 | Receives CC control for granular parameters |
+| **Program change** | Ch 16 | Selects sample via program change (0–63) |
+| **Auto (receive)** | Ch 15 | Receives CC + program change on this channel |
+
+### Note Number → Pad Map (48 pads)
+
+| Note Range | Bank | Pads |
+|---|---|---|
+| 48–53 (C3–F#3) | A | A1–A6 |
+| 54–59 (G3–C#3) | B | B1–B6 |
+| 60–65 (D4–G#4) | C | C1–C6 |
+| 66–71 (A4–D#4) | D | D1–D6 |
+| 72–77 (E5–A#5) | E | E1–E6 |
+| 78–83 (B5–E#6) | F | F1–F6 |
+| 84–89 (F6–A#6) | G | G1–G6 |
+| 90–95 (B6–D#6) | H | H1–H6 |
+
+Note numbers are used for pad selection only — pitch does not change per note.
+
+### MIDI Implementation Chart
+
+| Function | Transmitted | Recognized |
+|---|---|---|
+| **Basic channel** | 4 (granular), 11 (pads), 16 (PC) | 4, 11, 15 (auto), 16 (PC) |
+| **Mode** | Mode 3 (Omni off, Poly) | Mode 3 |
+| **Note number** | 48–95 (C3–B6) | 48–95 |
+| **Velocity (Note on)** | o | o |
+| **Velocity (Note off)** | x | x |
+| **Aftertouch** | x | x |
+| **Pitch bend** | x | x |
+| **Control change** | o | o |
+| **Program change** | o (0–63) | o (0–63) |
+| **System exclusive** | x | x |
+| **Song position** | x | x |
+| **Song select** | x | x |
+| **Clock (F8)** | o | o |
+| **Start (FA)** | o | o |
+| **Continue (FB)** | x | o |
+| **Stop (FC)** | o | o |
+| **All sound off (120)** | o | o |
+| **Reset all controllers (121)** | o | o |
+| **All notes off (123)** | o | o |
+| **Active sensing** | o | o |
+
+### Granular CC Parameters
+
+| CC | Param | CC | Param |
+|---|---|---|---|
+| 3 | Grain Reverse Probability | 25 | Spread |
+| 7 | Level | 26 | Filter Cutoff Key Follow |
+| 9 | Auto Pan | 28 | Amp Switch |
+| 10 | Pan | 29 | T.Env Mode |
+| 12 | Filter Type | 30 | T.Env Sustain |
+| 13 | Detune | 68 | Grain Timing Jitter |
+| 14 | Level Jitter | 71 | Filter Resonance |
+| 15 | Grain Shape | 72 | T.Env Release |
+| 16 | Grain Time Key Follow | 73 | T.Env Attack |
+| 17 | Lo-Fi Intensity | 74 | Filter Cutoff |
+| 18 | Fine Tune | 75 | T.Env Decay |
+| 19 | Head Position | 76 | Coarse Tune |
+| 20 | Head Speed | 77 | T.Env Time Key Follow |
+| 21 | Grains | 78 | Filter Velocity Sens |
+| 23 | Grain Size | 79 | Start Mode |
+| 24 | Filter Env Depth | | |
+
+### Mixer / Bus / FX CC Parameters
+
+| CC | Param | Notes |
+|---|---|---|
+| 84 | Output Bus Select | 0: Bus A, 1: Bus B, 2+: Effect |
+| 85 | Send Delay | Delay send level |
+| 86 | Send Reverb | Reverb send level |
+| 87 | Lo-Fi Switch | 0: Off, 1+: On |
+| 88 | Sample Select | Maps to pad sample (0–127 → 48 pads) |
+| 89 | Reverb Time | — |
+| 90 | Delay Time | — |
+| 91 | Reverb Level | — |
+| 92 | Delay Level | — |
+
+### Sync / Transport
+
+- P-6 syncs to external MIDI clock when MIDI clock source is set to AUTO or MIDI.
+- Clock (F8), Start (FA), Stop (FC) transmitted and received.
+- Continue (FB) treated same as Start on receive.
+- Works with other AIRA Compact devices (T-8, J-6, S-1, E-4) via SYNC IN/OUT or MIDI.
+
 ---
 *Source: Roland official P-6 Owner's Manual ([static.roland.com/manuals/p-6/en-US](https://static.roland.com/manuals/p-6/en-US/index.html))*
