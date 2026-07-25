@@ -1,0 +1,39 @@
+name: Markdown to PDF
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm install -g md-to-pdf
+
+      - name: Convert markdown files to PDF
+        run: |
+          for f in markdown/*.md; do
+            base=$(basename "$f" .md)
+            echo "Converting $f -> pdf/$base.pdf"
+            md-to-pdf \
+              --pdf-options '{"format": "A4", "margin": "20mm"}' \
+              --css 'body { font-family: Helvetica, Arial, sans-serif; }' \
+              "$f" --output "pdf/$base.pdf"
+          done
+
+      - name: Commit PDFs
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add pdf/
+          git diff --cached --quiet || git commit -m "Update PDFs [skip ci]"
+          git push
