@@ -3,7 +3,6 @@ name: Markdown to PDF
 on:
   push:
     branches: [main]
-    paths: [markdown/**]
 
 permissions:
   contents: write
