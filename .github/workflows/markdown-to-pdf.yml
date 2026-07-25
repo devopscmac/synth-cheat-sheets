@@ -21,13 +21,15 @@ jobs:
 
       - name: Convert markdown files to PDF
         run: |
+          mkdir -p pdf
           for f in markdown/*.md; do
             base=$(basename "$f" .md)
             echo "Converting $f -> pdf/$base.pdf"
             md-to-pdf \
               --pdf-options '{"format": "A4", "margin": "20mm"}' \
               --css 'body { font-family: Helvetica, Arial, sans-serif; }' \
-              "$f" --output "pdf/$base.pdf"
+              "$f"
+            mv "markdown/$base.pdf" "pdf/$base.pdf"
           done
 
       - name: Commit PDFs
