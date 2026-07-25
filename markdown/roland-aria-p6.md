@@ -23,6 +23,57 @@
 
 **Step sampling**: automatically divides one long recording into equal segments across multiple pads — useful for chopping a beat or vocal phrase in one pass.
 
+## Granular Synthesizer
+
+The P-6's granular engine turns any sample into a morphing, evolving texture by slicing it into tiny grains and playing them back with independent control over position, size, density, and pitch.
+
+### Assigning a Sample to Granular
+
+| Method | Steps |
+|---|---|
+| **Assign via VOICE menu** | Press **[GRANULAR]** pad → press **[SHIFT]** + Step G (VOICE) → use VALUE knob to select `SMPL` → press **[C#]** (ENTER) → select desired sample pad → press **[C]** (EXIT) |
+| **Shortcut** | Hold **[PATTERN]** + press **[GRANULAR]** → press the sample pad you want to assign |
+
+### Playing the Granular Engine
+
+- Press the **[GRANULAR]** pad to trigger the assigned sample in granular mode.
+- Press **[KYBD]** to play the granular sound chromatically across the STEP KEYS.
+- Enable polyphony: press **[SHIFT]** + **[GATE]** to set POLY — up to 4-voice polyphonic granular playback.
+- The granular engine has its own independent **Filter**, **Amp/Filter Envelope**, and **Effects routing** (same as sample pads).
+
+### Granular Parameters (Sample Edit Knobs)
+
+| Knob | Function | Range / Notes |
+|---|---|---|
+| **PITCH** | Grain pitch / transpose | Coarse tuning of grains; -24 to +24 semitones |
+| **START** | Grain position / spread | Controls where in the sample grains are read from — turn to scan through the source audio |
+| **END** | Grain size | Length of each individual grain — small = grainy/glitchy, large = smoother/textural |
+| **LEVEL** | Output level | Overall volume of the granular engine |
+
+### Granular Parameters (VOICE Menu — SHIFT + VOICE)
+
+| Parameter | Description |
+|---|---|
+| **SMPL** | Select/change the sample assigned to the granular pad |
+| **GR.TYP** | Grain type/shape — affects the character of each grain envelope |
+| **GR.DEN** | Grain density — how many grains are triggered per second |
+| **GR.PAN** | Grain panning spread — stereo width of the granular texture |
+| **GR.KEY** | Key tracking for grain parameters (on/off) |
+| **G.ATK** | Grain attack time — how quickly each grain fades in |
+| **G.DEC** | Grain decay time — how quickly each grain fades out |
+| **G.DEP** | Modulation depth for grain parameters (via internal LFO) |
+| **G.SPD** | Modulation speed for grain parameters |
+
+### Sound Design Tips for Granular
+
+- **Small grain size + high density** = smooth, pad-like textures.
+- **Large grain size + low density** = glitchy, stuttering effects.
+- **Turn START to scan** through the sample in real time — creates evolving, wavetable-like motion.
+- **Resample** the granular output: press **[SAMPLING]**, select a pad, press **[SAMPLING]** again to capture the granular texture as a new sample — then apply effects, chop it, or layer it.
+- **Apply MFX** to the granular engine: try Reverb, Chorus, Flanger, or Scatter for extreme transformation.
+- **Polyphonic granular** (SHIFT + GATE) lets you play chords — great for ambient pads and dreamy textures.
+- Sequence the GRANULAR pad in a pattern like any other pad — use motion recording on START (grain position) to sweep through the sample over time.
+
 ## Sample Edit Knobs (context-dependent)
 
 The four knobs re-map depending on the current edit page:
@@ -32,7 +83,7 @@ The four knobs re-map depending on the current edit page:
 | **Top / normal** | Coarse tune | Start point | End point | Sample level |
 | **P.ENV (pitch envelope)** | Attack | Decay | Sustain | Release |
 | **Voice (tone envelope)** | Attack | Decay | Sustain | Release |
-| **Granular mode** | — | Grain position/spread | Grain size | Level |
+| **Granular mode** | Grain pitch | Grain position/spread | Grain size | Level |
 | **Filter** | Cutoff | Resonance | Env depth | Level |
 | **Mixer** | Pan | Delay send | Reverb send | Level |
 
@@ -114,7 +165,9 @@ Dedicated one-touch effect buttons: **LOOPER, PITCH, DELAY, FILTER, SCATTER**; *
 - Occupied pads must be **DELETE**d before re-sampling into them.
 - Use **SHIFT + GATE** to make chords/layers possible on a single sample (polyphonic).
 - **Motion recording**: hold a step + twist a knob to automate filter/pitch/level sweeps per step.
-- GRANULAR pad turns any sample into a texture/pad source — great for stretching short clips.
+- GRANULAR pad turns any sample into a texture/pad source — see the Granular Synthesizer section above for full parameter details and workflow.
+- **Resample granular output** to capture evolving textures as new samples — press SAMPLING, select a pad, record, then edit with standard sample tools.
+- **Automate grain position** with motion recording: hold a step + turn START knob to sweep through the sample over time.
 - SYNC IN/OUT lets you clock-sync multiple AIRA Compact units without MIDI cables.
 
 ---
