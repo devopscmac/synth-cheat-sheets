@@ -13,25 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - uses: baileyjm02/markdown-to-pdf@v1
         with:
-          node-version: 22
-
-      - run: npm install -g md-to-pdf
-
-      - name: Convert markdown files to PDF
-        run: |
-          mkdir -p pdf
-          for f in markdown/*.md; do
-            base=$(basename "$f" .md)
-            echo "Converting $f -> pdf/$base.pdf"
-            md-to-pdf \
-              --pdf-options '{"format": "A4", "margin": "20mm"}' \
-              --css 'body { font-family: Helvetica, Arial, sans-serif; }' \
-              --launch-options '{"args": ["--no-sandbox"]}' \
-              "$f"
-            mv "markdown/$base.pdf" "pdf/$base.pdf"
-          done
+          input_dir: markdown
+          output_dir: pdf
+          build_html: false
+          table_of_contents: false
 
       - name: Commit PDFs
         run: |
