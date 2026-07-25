@@ -28,6 +28,7 @@ jobs:
             md-to-pdf \
               --pdf-options '{"format": "A4", "margin": "20mm"}' \
               --css 'body { font-family: Helvetica, Arial, sans-serif; }' \
+              --launch-options '{"args": ["--no-sandbox"]}' \
               "$f"
             mv "markdown/$base.pdf" "pdf/$base.pdf"
           done
