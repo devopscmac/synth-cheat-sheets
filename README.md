@@ -11,4 +11,5 @@ One-page quick reference guides for hardware synthesizers, samplers, and drum ma
 | Roland AIRA Compact P-6 | Creative Sampler | [markdown](markdown/roland-aria-p6.md) | [pdf](pdf/roland-aria-p6.pdf) |
 | Roland AIRA Compact S-1 | Tweak Synthesizer | [markdown](markdown/roland-aria-s1.md) | [pdf](pdf/roland-aria-s1.pdf) |
 | Roland AIRA Compact T-8 | Beat Machine | [markdown](markdown/roland-aria-t8.md) | [pdf](pdf/roland-aria-t8.pdf) |
+| Teenage Engineering PO-33 K.O! | Pocket Sampler / Sequencer | [markdown](markdown/teenage-engineering-po33.md) | [pdf](pdf/teenage-engineering-po33.pdf) |
 | Yamaha Seqtrak | Groove Production Station | [markdown](markdown/yamaha-seqtrak.md) | [pdf](pdf/yamaha-seqtrak.pdf) |
