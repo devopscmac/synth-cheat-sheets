@@ -165,5 +165,78 @@ Swing applies to 1/8 and 1/16 (KNOB Y).
 - **Live input FX**: plug into LINE IN, press MAIN, turn up KNOB Y (FX send level) to process external audio through the selected effect.
 - USB audio (class compliant) — use KO2 as an audio interface to your phone or computer.
 
+## MIDI Implementation
+
+### Note Number → Pad Map (48 pads)
+
+| Note Range | Group | Pads |
+|---|---|---|
+| 36–47 (C2–B2) | A | . 0 ENT 1 2 3 4 5 6 7 8 9 |
+| 48–59 (C3–B3) | B | . 0 ENT 1 2 3 4 5 6 7 8 9 |
+| 60–71 (C4–B4) | C | . 0 ENT 1 2 3 4 5 6 7 8 9 |
+| 72–83 (C5–B5) | D | . 0 ENT 1 2 3 4 5 6 7 8 9 |
+
+In **keys mode**, all 128 notes (0–127) are available chromatically for the selected pad.
+
+### MIDI Implementation Chart
+
+| Function | Transmitted | Recognized |
+|---|---|---|
+| **Basic channel (default)** | 1 | 1 |
+| **Basic channel (changed)** | 1–16 | 1–16 |
+| **Mode (default)** | Mode 1 (Omni on, Poly) | Mode 1 |
+| **Mode (messages)** | x | x |
+| **Note number (pads)** | 36–83 (C2–B5) | 36–83 |
+| **Note number (keys mode)** | 0–127 | 0–127 |
+| **Velocity (Note on)** | o | o |
+| **Velocity (Note off)** | x | x |
+| **Aftertouch** | x | x |
+| **Pitch bend** | x | o |
+| **Control change** | o | o |
+| **Program change** | o (0–127) | o (0–127) |
+| **System exclusive** | x | o |
+| **Song position** | x | x |
+| **Song select** | x | x |
+| **Tune request** | x | x |
+| **Clock (F8)** | o | o |
+| **Start/Continue/Stop** | o | o |
+| **All sound off (120)** | o | o |
+| **Reset all controllers (121)** | o | o |
+| **All notes off (123)** | o | o |
+| **Local on/off** | x | x |
+| **Active sensing** | x | x |
+| **System reset** | x | x |
+
+### MIDI CC Map
+
+| CC | Param | Range | Notes |
+|---|---|---|---|
+| 1 | Vibrato | 0–127 | Mod wheel → vibrato amount |
+| 12 | FX Knob X | 0–127 | Controls X param of active punch-in FX (OS 2.5+) |
+| 13 | FX Knob Y | 0–127 | Controls Y param of active punch-in FX (OS 2.5+) |
+| 64 | Sustain Pedal | 0–127 | 0–63 off, 64–127 on; key & legato voices (OS 2.5+) |
+| 0+32 | Bank Select MSB+LSB | 0–16383 | Use with PC to access sounds 1–999 (0-based) |
+
+### System Settings — MIDI & Sync Reference
+
+| Code | Setting | Values |
+|---|---|---|
+| **100–102** | MIDI Clock | 100=off, 101=in (receive), 102=out (send) |
+| **110–126** | MIDI Channel | 110=all (rcv), ch1 (snd); 111–126 = ch 1–16 |
+| **127** | MIDI Ch (send only) | Only send if assigned in sound edit MIDI page |
+| **130–131** | MIDI Thru | 130=off, 131=on (forwards MIDI in → out) |
+| **140–141** | MIDI Reset on Stop | 140=off, 141=on (reset controllers at stop) |
+| **200–202** | Sync In Rate | 200=8th, 201=16th, 202=24 PPQN |
+| **210–212** | Sync Out Rate | 210=8th, 211=16th, 212=24 PPQN |
+
+### MIDI Sequencing External Gear
+
+1. Press **SHIFT + SOUND** → page to MIDI settings.
+2. **KNOB X** = MIDI channel (1–16), **KNOB Y** = root note.
+3. Set a pad's sample to `000` in Sound mode for silent MIDI-only triggers.
+4. Record as usual — notes are sent out on the assigned channel.
+
+USB-C is class-compliant MIDI. TRS jack is Type A (ring = tip, sleeve = ground).
+
 ---
-*Source: teenage.engineering guides, gabrielroth.com/ko2 manual (firmware v2.0.5)*
+*Source: teenage.engineering guides (ver 2.5), midi.guide, gabrielroth.com/ko2 manual*
