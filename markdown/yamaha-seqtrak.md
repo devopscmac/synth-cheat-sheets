@@ -52,6 +52,55 @@
 - CHORD mode: hold [ALL] + Synth key to edit chord voicing (up to 4 notes)
 - **Keyboard Input mode**: hold [ALL] + [KEY] — Drum keys become a piano keyboard
 
+## Factory Sound Categories
+
+Both SYNTH (AWM2) and DX (FM) tracks organize 2,032 presets into 15 shared categories. Drum tracks have their own 15 drum categories. SAMPLER tracks use 15 sample categories (392 presets).
+
+### Synth & DX Categories (AWM2 + FM)
+
+| # | Category | Description |
+|---|---|---|
+| 1 | **Bass** | Acoustic, synth, FM basses — sub, plucked, distorted |
+| 2 | **Synth Lead** | Mono leads — square, saw, FM, ring-mod, brass-style |
+| 3 | **Piano** | Acoustic grands, uprights, FM pianos, DX7 classics |
+| 4 | **Keyboard** | EPs, clavinets, harpsichords — Wurly, Rhodes, DX EPs |
+| 5 | **Organ** | Tonewheel, pipe, accordion, combo organs — jazz/rock/classical |
+| 6 | **Pad** | Warm, evolving, atmospheric — saw pads, PWM, sweep pads |
+| 7 | **Strings** | Orchestral ensembles, solo strings, synth strings, PWM |
+| 8 | **Brass** | Trumpet, trombone, French horn, synth brass, hits |
+| 9 | **Woodwind** | Flute, clarinet, sax, oboe, bassoon — solo & ensemble |
+| 10 | **Guitar** | Acoustic, electric, nylon, wah, distorted, FM chorus |
+| 11 | **World** | Koto, shamisen, sitar, ethnic winds & strings |
+| 12 | **Mallet** | Marimba, vibraphone, xylophone, glockenspiel |
+| 13 | **Bell** | Music box, tubular bells, crystal, digital FM bells |
+| 14 | **Rhythmic** | Arpeggiated versions of synth presets — bass, lead, pad |
+| 15 | **SFX** | Sound effects — sirens, choppers, beats, sweeps |
+
+### Drum Categories
+
+| # | Category | # | Category | # | Category |
+|---|---|---|---|---|---|
+| 1 | Kick | 6 | Closed HiHat | 11 | Tom |
+| 2 | Snare | 7 | Open HiHat | 12 | Bell |
+| 3 | Rim | 8 | Shaker / Tambourine | 13 | Conga / Bongo |
+| 4 | Clap | 9 | Ride | 14 | World |
+| 5 | Snap | 10 | Crash | 15 | SFX |
+
+### SAMPLER Categories
+
+| # | Category | # | Category |
+|---|---|---|---|
+| 1 | Vocal Count | 9 | Ambient / Soundscape |
+| 2 | Vocal Phrase / Chant | 10 | SFX |
+| 3 | Singing Vocal | 11 | Scratch |
+| 4 | Robotic Vocal / Effect | 12 | Nature / Animals |
+| 5 | Riser | 13 | Hit / Stab / Musical Instrument |
+| 6 | Laser / Sci-Fi | 14 | Percussion |
+| 7 | Impact | 15 | Recorded Sound |
+| 8 | Noise / Distorted Sound | | |
+
+Select a sound by pressing a Track knob then turning Sound Design knob 1 on Page 1. **Category Jump**: hold Sound Design knob 1 + press a Drum key (1–15) to jump to the first sound in the corresponding category.
+
 ## Sampling Workflow
 
 1. Press [SAMPLER] knob to select SAMPLER track.
@@ -103,6 +152,101 @@ Press a **Track knob** to select a track, then use **Sound Design knobs 1–4** 
 | **1** | SOUND SELECT | START POINT | END POINT | LOOP ON/OFF |
 | **2** | LOOP LENGTH | ATTACK | DECAY/RELEASE | PITCH |
 | **3** | PAN | VOLUME | FILTER CUTOFF | FILTER RESONANCE |
+
+## Advanced Sound Design (AWM2 Synth)
+
+Beyond the 3 hardware Sound Design pages, deeper parameters are accessible via the SEQTRAK app. SYNTH 1 and SYNTH 2 share the same engine.
+
+### AEG (Amplitude Envelope Generator)
+
+| Stage | Hardware Page 2 | App (full) |
+|---|---|---|
+| **Attack** | Knob 1 (ATTACK) | 0–127 |
+| **Decay** | Knob 2 (DECAY/RELEASE) | 0–127 |
+| **Sustain** | — | 0–127 (fixed at max on hardware) |
+| **Release** | — | linked to Decay on hardware |
+
+### Filter
+
+| Parameter | Hardware | App |
+|---|---|---|
+| **Type** | — | LP24, LP18, LP12, HP24, HP12, BP12, BP6, Through |
+| **Cutoff** | Page 2 Knob 3 | 0–127 |
+| **Resonance** | Page 2 Knob 4 | 0–127 |
+| **Key Follow** | — | -100% to +100% |
+| **Velocity Sensitivity** | — | -100% to +100% |
+| **Env Depth** | — | -100% to +100% |
+
+### LFO
+
+| Parameter | App Only |
+|---|---|
+| **Wave** | Sine, Triangle, Saw Up, Saw Down, Square, Sample & Hold, Random S&H |
+| **Speed** | 0–127 (free) or tempo-synced (1/64t – 8 bars) |
+| **Delay** | 0–127 |
+| **Depth** | 0–127 |
+| **Destination** | Pitch, Filter, Amplitude, Pan |
+| **Key Sync** | On/Off |
+
+### Advanced Settings (App Only)
+
+- **Portamento** — Time 0–127, Mode (Always, Fingered)
+- **Arpeggiator** — Type (8 patterns), Direction (Up/Down/UpDown/Random), Gate 0–127, Speed 0–127, Hold On/Off
+- **Track Effect** — Insert effect per track (selected with sound, adjustable in app)
+- **EQ** — 2-band shelving (High Gain, Low Gain) on Page 3 hardware knobs
+
+## Advanced Sound Design (DX FM)
+
+The DX track uses the same 4-operator FM engine as the reface DX. Hardware Page 2 exposes the core FM parameters; the app provides full operator-level editing.
+
+### Hardware FM Parameters (Page 2)
+
+| Knob | Parameter | Effect |
+|---|---|---|
+| **1** | **ALGORITHM** | Selects operator routing configuration (1–8) |
+| **2** | **MOD AMOUNT** | Overall modulation intensity (global FM depth) |
+| **3** | **MOD FREQ** | Operator frequency ratio / fixed frequency |
+| **4** | **MOD FEEDBACK** | Feedback amount for self-modulating operators |
+
+### Algorithm Overview (1–8)
+
+The 4 operators (OP1–OP4) can be arranged in serial, parallel, or mixed configurations:
+
+| Algorithm | Structure | Best For |
+|---|---|---|
+| **1** | 4-op serial chain | Rich harmonic stacks, complex evolving tones |
+| **2** | 3-op → 1 (stacked) | Brass, resonant filters |
+| **3** | 2+2 parallel | Dual-timbral sounds, layered EPs |
+| **4** | 2→1 + 1 (fork) | Clavs, plucks, percussive tones |
+| **5** | 2→1 + 1 (parallel) | Bell-like, glassy textures |
+| **6** | 1→1 + 2 (split) | Bass + harmonic accent |
+| **7** | 4-op all parallel | Additive-style, organ-like |
+| **8** | OP1→OP2 (self-fb) | Distorted, metallic, aggressive leads |
+
+All use OP4 as the final output carrier; OP1–OP3 act as modulators.
+
+### Full Operator Editing (App Only)
+
+Each of the 4 operators has:
+
+| Parameter | Range | Notes |
+|---|---|---|
+| **Frequency Ratio** | 0.5 – 32.0 | Coarse pitch multiplier |
+| **Fixed Frequency** | 0 – 12000 Hz | Overrides ratio when enabled |
+| **Level** | 0–127 | Output level of operator |
+| **Velocity Sensitivity** | -100% to +100% | How hard playing affects level |
+| **Envelope** | A/D/S/R | 4-stage rate/level envelope per operator |
+| **Feedback** | 0–7 | Self-oscillation (OP4 only in some algos) |
+
+### FM Sound Design Tips
+
+- Start with a simple algorithm (7 or 8) and enable operators incrementally.
+- Low MOD AMOUNT + high MOD FREQ ratio produces bell/metalic tones.
+- High MOD AMOUNT + low MOD FREQ ratio produces overdriven/distorted tones.
+- Ratios of 1:1 → octave, 2:1 → 5th, 3:2 → 5th above, 4:1 → 2 octaves.
+- Use SOUND SELECT on Page 1 to pick a DX preset, then tweak MOD AMOUNT (Page 2 knob 2) for quick variation.
+- Assign LFO to pitch for vibrato, to filter for wah, or to amplitude for tremolo (via app).
+- Save edited sounds by holding [ALL] + pressing Sound Design knob 1 — appended as "_editNN".
 
 ## Effects Architecture
 
